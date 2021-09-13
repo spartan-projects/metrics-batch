@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: metrics-job
+  namespace: default
+  labels:
+    job-name: metrics-job
+spec:
+  template:
+    metadata:
+      name: metrics-job-pod
+      namespace: default
+      labels:
+        pod-name: metrics-job-pod
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: metrics-server-container
+          image: 945377166858.dkr.ecr.us-east-1.amazonaws.com/metrics-batch
